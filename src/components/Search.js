@@ -4,6 +4,7 @@ const Search = () => {
   return (
     <div className="ui huge fluid icon input">
       <input
+      onChange ={ (e) => handleChange (e)}
         type="text"
         placeholder={"Search your Recent Transactions"}
       />
