@@ -31,7 +31,7 @@ const TransactionsList = (props) => {
         </tr>
 
         {props.trans.map( tran => (
-          <Transaction tran={tran}/>
+          <Transaction tran={tran} key={tran.id}/>
         ))}
 
        

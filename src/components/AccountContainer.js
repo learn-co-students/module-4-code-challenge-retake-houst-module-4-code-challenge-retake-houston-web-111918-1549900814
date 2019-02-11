@@ -13,7 +13,8 @@ class AccountContainer extends Component {
     // then replace the default transactions with a call to the API
 
     this.state = {
-      transactions: transactions
+      transactions: transactions,
+      searchTerm: ''
     }
   }
 
@@ -25,16 +26,27 @@ class AccountContainer extends Component {
     }))
   }
 
-  handleChange(event) {
-    // your code here
+  handleChange = (event) => {
+    this.setState({searchTerm: event.target.value})
+  }
+
+  filtered = () => {
+
   }
 
   render() {
+    let filtered = this.state.transactions.filter( tran => 
+      tran.description.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+      ||
+      tran.category.toLowerCase().includes(this.state.searchTerm.toLowerCase())
+      )
+    
 
     return (
       <div>
-        <Search />
-        <TransactionsList trans={this.state.transactions}/>
+        <Search handleChange={this.handleChange} />
+        {/* <TransactionsList trans={this.state.transactions} /> */}
+        <TransactionsList trans={filtered} />
       </div>
     )
   }
