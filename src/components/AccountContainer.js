@@ -12,6 +12,17 @@ class AccountContainer extends Component {
     // use this to get the functionality working
     // then replace the default transactions with a call to the API
 
+    this.state = {
+      transactions: transactions
+    }
+  }
+
+  componentDidMount () {
+    fetch('https://boiling-brook-94902.herokuapp.com/transactions')
+    .then(res => res.json())
+    .then(json => this.setState({
+      transactions: json
+    }))
   }
 
   handleChange(event) {
@@ -23,7 +34,7 @@ class AccountContainer extends Component {
     return (
       <div>
         <Search />
-        <TransactionsList />
+        <TransactionsList trans={this.state.transactions}/>
       </div>
     )
   }
