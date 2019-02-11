@@ -38,7 +38,7 @@ class AccountContainer extends Component {
     return (
       <div>
         <Search handleChange={this.handleChange}/>
-        {this.state.trans.filter(t=>t.description.includes(this.state.search)).map(t=>(
+        {this.state.trans.filter(t=>t.description.includes(this.state.search) || t.category.includes(this.state.search)).map(t=>(
           <TransactionsList trans={t} />
         ))}
         
